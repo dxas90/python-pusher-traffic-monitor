@@ -12,7 +12,7 @@ from dbsetup import create_connection, create_session, update_or_create_page, se
 app = Flask(__name__)
 app.secret_key = os.urandom(24)
 
-pusher = Pusher(app_id=u'PUSHER_APP_ID', key=u'PUSHER_APP_KEY', secret=u'PUSHER_APP_SECRER', cluster=u'PUSHER_APP_CLUSTER')
+pusher = Pusher(app_id=os.environ.get("PUSHER_APP_ID", default=''), key=os.environ.get("PUSHER_APP_KEY", default=''), secret=os.environ.get("PUSHER_APP_SECRER", default=''), cluster=os.environ.get("PUSHER_APP_CLUSTER", default=''))
 
 database = "./pythonsqlite.db"
 conn = create_connection(database)
